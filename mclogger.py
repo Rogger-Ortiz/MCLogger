@@ -3,9 +3,11 @@ import discord
 from discord.ext import tasks, commands
 import nest_asyncio
 import asyncio
+from dotenv import load_dotenv
 
+load_dotenv(dotenv_path="../.env")
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix='*', intents=intents)
+bot = commands.Bot(command_prefix='$', intents=intents)
 
 # Removes help command so we can use our own
 bot.remove_command('help')
@@ -13,8 +15,7 @@ bot.remove_command('help')
 # Define all of the cogs here (comment out what you won't use)
 cogs = [
     'cogs.help',
-    'cogs.youtube',
-    'cogs.chatbot',
+    'cogs.logging',
     #'cogs.test'
 ]
 
@@ -32,4 +33,4 @@ async def on_ready():
     profile = bot.get_cog("Profile")
 
 # Starts the bot
-bot.run(os.getenv("TEA_key"))
+bot.run(os.getenv("MCL_key"))
